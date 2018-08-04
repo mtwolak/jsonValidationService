@@ -1,13 +1,15 @@
 package com.cs.validation.web;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/")
-class ValidationController {
+@RestController
+@RequestMapping("validate")
+public class ValidationController {
 
-	@PostMapping("validate")
-	String validate() {
+	@PostMapping
+	public String validate() {
 		return "Its ok";
 	}
 }
