@@ -1,5 +1,7 @@
 package com.cs.validation;
 
+import com.cs.validation.model.Trade;
+import com.cs.validation.model.ValidationResult;
 import org.junit.Test;
 
 import java.time.LocalDate;

@@ -1,6 +1,6 @@
 package com.cs.validation.rules;
 
-import com.cs.validation.Trade;
+import com.cs.validation.model.Trade;
 
 class ValueDateAfterTradeDate implements ValidationRule {
 	@Override

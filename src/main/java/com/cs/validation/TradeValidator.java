@@ -1,5 +1,7 @@
 package com.cs.validation;
 
+import com.cs.validation.model.Trade;
+import com.cs.validation.model.ValidationResult;
 import com.cs.validation.rules.ValidationRule;
 import com.cs.validation.rules.ValidationRulesFactory;
 

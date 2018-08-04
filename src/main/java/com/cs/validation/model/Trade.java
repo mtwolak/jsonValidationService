@@ -1,4 +1,4 @@
-package com.cs.validation;
+package com.cs.validation.model;
 
 import java.time.LocalDate;
 

@@ -1,6 +1,6 @@
 package com.cs.validation.rules;
 
-import com.cs.validation.Trade;
+import com.cs.validation.model.Trade;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;

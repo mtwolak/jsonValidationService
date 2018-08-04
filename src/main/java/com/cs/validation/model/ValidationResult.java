@@ -1,24 +1,24 @@
-package com.cs.validation;
+package com.cs.validation.model;
 
 import java.util.Collection;
 import java.util.LinkedList;
 
-class ValidationResult {
+public class ValidationResult {
 	private Collection<String> errors;
 
-	ValidationResult() {
+	public ValidationResult() {
 		this.errors = new LinkedList<>();
 	}
 
-	boolean hasErrors() {
+	public boolean hasErrors() {
 		return !errors.isEmpty();
 	}
 
-	Collection<String> getErrorMessages() {
+	public Collection<String> getErrorMessages() {
 		return new LinkedList<>(errors);
 	}
 
-	void addErrorMessage(String errorMessage) {
+	public void addErrorMessage(String errorMessage) {
 		this.errors.add(errorMessage);
 	}
 }
