@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 class SupportedStyles implements ValidationRule {
 
-	private static final Set<String> SUPPORTED_STYLES = Stream.of("American", "European").collect(Collectors.toSet());
+	private static final Set<String> SUPPORTED_STYLES = Stream.of("AMERICAN", "EUROPEAN").collect(Collectors.toSet());
 
 	@Override
 	public boolean validate(Trade trade) {

@@ -37,6 +37,7 @@ public class ExpiryDateBeforeDeliveryDateTest {
 		trade.setDeliveryDate(LocalDate.parse("2010-02-02"));
 		trade.setPremiumDate(null);
 
+
 		boolean validationResult = tradeValidator.validate(trade);
 
 		assertThat(validationResult).isFalse();

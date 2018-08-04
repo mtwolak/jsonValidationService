@@ -42,7 +42,7 @@ public class TradeValidatorTest {
 	@Test
 	public void shouldGiveErrorWhenAmericanStyleWithExerciseDateNotAfterTradeDateOrBeforeExpirationDate() {
 		Trade trade = CorrectTrade.create();
-		trade.setStyle("American");
+		trade.setStyle("AMERICAN");
 		trade.setExcerciseStartDate(LocalDate.parse("2010-10-10"));
 		trade.setTradeDate(LocalDate.parse("2012-10-10"));
 

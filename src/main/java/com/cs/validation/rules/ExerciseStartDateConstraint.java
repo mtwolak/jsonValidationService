@@ -10,15 +10,21 @@ class ExerciseStartDateConstraint implements ValidationRule {
 	public boolean validate(Trade trade) {
 		String style = trade.getStyle();
 		LocalDate exerciseStartDate = trade.getExcerciseStartDate();
-		return !isAmericanStyle(style) || isExerciseDateCorrect(trade, exerciseStartDate);
+		LocalDate tradeDate = trade.getTradeDate();
+		LocalDate expiryDate = trade.getExpiryDate();
+		if (isAmericanStyle(style)) {
+			return checkDateBefore(tradeDate, exerciseStartDate) && checkDateBefore(exerciseStartDate, expiryDate);
+		} else {
+			return true;
+		}
 	}
 
-	private boolean isExerciseDateCorrect(Trade trade, LocalDate exerciseStartDate) {
-		return exerciseStartDate.isAfter(trade.getTradeDate()) && exerciseStartDate.isBefore(trade.getExpiryDate());
+	private boolean checkDateBefore(LocalDate before, LocalDate after) {
+		return before == null || after == null || before.isBefore(after);
 	}
 
 	private boolean isAmericanStyle(String style) {
-		return style != null && style.equals("American");
+		return style != null && style.equals("AMERICAN");
 	}
 
 	@Override

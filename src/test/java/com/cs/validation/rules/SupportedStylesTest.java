@@ -19,7 +19,7 @@ public class SupportedStylesTest {
 	@Test
 	public void shouldValidationSuccessWhenStyleIsSupported() {
 		Trade trade = CorrectTrade.create();
-		trade.setStyle("European");
+		trade.setStyle("EUROPEAN");
 
 		boolean validationResult = tradeValidator.validate(trade);
 
