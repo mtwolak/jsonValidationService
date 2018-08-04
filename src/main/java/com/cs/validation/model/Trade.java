@@ -13,6 +13,8 @@ public class Trade {
 	private double amount2;
 	private double rate;
 	private LocalDate valueDate;
+	private LocalDate excerciseStartDate;
+	private LocalDate expiryDate;
 	private String legalEntity;
 	private String trader;
 	private String style;
@@ -111,5 +113,21 @@ public class Trade {
 
 	public void setStyle(String style) {
 		this.style = style;
+	}
+
+	public LocalDate getExcerciseStartDate() {
+		return excerciseStartDate;
+	}
+
+	public void setExcerciseStartDate(LocalDate excerciseStartDate) {
+		this.excerciseStartDate = excerciseStartDate;
+	}
+
+	public LocalDate getExpiryDate() {
+		return expiryDate;
+	}
+
+	public void setExpiryDate(LocalDate expiryDate) {
+		this.expiryDate = expiryDate;
 	}
 }

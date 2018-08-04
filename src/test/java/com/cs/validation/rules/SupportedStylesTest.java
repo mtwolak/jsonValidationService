@@ -1,5 +1,6 @@
 package com.cs.validation.rules;
 
+import com.cs.validation.CorrectTrade;
 import com.cs.validation.model.Trade;
 import org.junit.Before;
 import org.junit.Test;

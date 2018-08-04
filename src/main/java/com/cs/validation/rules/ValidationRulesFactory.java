@@ -11,6 +11,7 @@ public class ValidationRulesFactory {
 		validationRules.add(new SupportedCounterParty());
 		validationRules.add(new ValidCurrencyIsoCode());
 		validationRules.add(new SupportedStyles());
+		validationRules.add(new ExerciseStartDateConstraint());
 		return validationRules;
 	}
 }
