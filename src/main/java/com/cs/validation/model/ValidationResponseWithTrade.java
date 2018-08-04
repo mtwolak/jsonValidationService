@@ -11,5 +11,11 @@ public class ValidationResponseWithTrade extends ValidationResponse {
 	public void setTrade(Trade trade) {
 		this.trade = trade;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "ValidationResponseWithTrade{" +
+				"trade=" + trade +
+				'}';
+	}
 }

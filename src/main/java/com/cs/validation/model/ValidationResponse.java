@@ -32,4 +32,11 @@ public class ValidationResponse {
 		this.failedReasons = failedReasons;
 	}
 
+	@Override
+	public String toString() {
+		return "ValidationResponse{" +
+				"validationStatus='" + validationStatus + '\'' +
+				", failedReasons=" + failedReasons +
+				'}';
+	}
 }
