@@ -19,6 +19,7 @@ public class TradeValidatorTest {
 		trade.setValueDate(LocalDate.parse("2018-01-01"));
 		trade.setCustomer("Not supported customer");
 		trade.setCcyPair("Not supported currency pair");
+		trade.setStyle("Not supported style");
 
 		ValidationResult validationResult = tradeValidator.validate(trade);
 
@@ -27,6 +28,7 @@ public class TradeValidatorTest {
 				"Value date cannot fall on weekend or non-working day.",
 				"Value date cannot be after trade date.",
 				"Customer is not supported",
-				"Currency pair is not compliant with ISO code 4217");
+				"Currency pair is not compliant with ISO code 4217",
+				"Style is not supported");
 	}
 }

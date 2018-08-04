@@ -60,7 +60,7 @@ public class ValidationControllerTest {
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(jsonPath("$[0].validationStatus", is("failed")))
-				.andExpect(jsonPath("$[0].failedReasons", hasSize(2)))
+				.andExpect(jsonPath("$[0].failedReasons", hasSize(3)))
 				.andExpect(jsonPath("$[0].failedReasons", hasItems("Value date cannot be after trade date.", "Value date cannot fall on weekend or non-working day.")))
 				.andExpect(jsonPath("$[1].validationStatus", is("failed")))
 				.andExpect(jsonPath("$[1].failedReasons", hasSize(1)))

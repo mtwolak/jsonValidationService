@@ -6,32 +6,32 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ValidCurrencyIsoCodeTest {
+public class SupportedStylesTest {
 
 	private ValidationRule tradeValidator;
 
 	@Before
 	public void setUp() {
-		tradeValidator = new ValidCurrencyIsoCode();
+		tradeValidator = new SupportedStyles();
 	}
 
 	@Test
-	public void shouldValidationFailWhenNotSupportedCurrency() {
+	public void shouldValidationSuccessWhenStyleIsSupported() {
 		Trade trade = CorrectTrade.create();
-		trade.setCcyPair("Unsupported currency");
-
-		boolean validationResult = tradeValidator.validate(trade);
-
-		assertThat(validationResult).isFalse();
-	}
-
-	@Test
-	public void shouldValidationSuccessWhenSupportedCurrency() {
-		Trade trade = CorrectTrade.create();
-		trade.setCcyPair("EURUSD");
+		trade.setStyle("European");
 
 		boolean validationResult = tradeValidator.validate(trade);
 
 		assertThat(validationResult).isTrue();
+	}
+
+	@Test
+	public void shouldValidationFailWhenStyleIsNotSupported() {
+		Trade trade = CorrectTrade.create();
+		trade.setStyle("Not supported style");
+
+		boolean validationResult = tradeValidator.validate(trade);
+
+		assertThat(validationResult).isFalse();
 	}
 }

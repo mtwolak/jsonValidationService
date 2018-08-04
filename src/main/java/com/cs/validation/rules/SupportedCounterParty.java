@@ -2,17 +2,13 @@ package com.cs.validation.rules;
 
 import com.cs.validation.model.Trade;
 
-import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class SupportedCounterParty implements ValidationRule {
 
-	private static final Set<String> SUPPORTED_COUNTERPARTIES = new HashSet<>();
-
-	static {
-		SUPPORTED_COUNTERPARTIES.add("PLUTO1");
-		SUPPORTED_COUNTERPARTIES.add("PLUTO2");
-	}
+	private static final Set<String> SUPPORTED_COUNTERPARTIES = Stream.of("PLUTO1", "PLUTO2").collect(Collectors.toSet());
 
 	@Override
 	public boolean validate(Trade trade) {

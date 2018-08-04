@@ -12,7 +12,8 @@ class ValidCurrencyIsoCode implements ValidationRule {
 	@Override
 
 	public boolean validate(Trade trade) {
-		return REGEX_FORMAT.matcher(trade.getCcyPair().toUpperCase(Locale.ENGLISH)).matches();
+		String ccyPair = trade.getCcyPair();
+		return ccyPair != null && REGEX_FORMAT.matcher(ccyPair.toUpperCase(Locale.ENGLISH)).matches();
 	}
 
 	@Override

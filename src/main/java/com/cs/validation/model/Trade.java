@@ -15,6 +15,7 @@ public class Trade {
 	private LocalDate valueDate;
 	private String legalEntity;
 	private String trader;
+	private String style;
 
 	public String getCustomer() {
 		return customer;
@@ -102,5 +103,13 @@ public class Trade {
 
 	public void setTrader(String trader) {
 		this.trader = trader;
+	}
+
+	public String getStyle() {
+		return style;
+	}
+
+	public void setStyle(String style) {
+		this.style = style;
 	}
 }
