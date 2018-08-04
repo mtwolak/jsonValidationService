@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -37,12 +38,21 @@ public class ValidationControllerTest {
 	}
 
 	@Test
-	public void shouldValidateSuccessfullyWhenCorrectTradeGiven() throws Exception {
+	public void shouldValidateSuccessWhenCorrectTradeGiven() throws Exception {
 		mvc.perform(post("/validate").content(readFile("emp.json")).contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-				.andExpect(jsonPath("$.status", is("ok")));
+				.andExpect(jsonPath("$.validationStatus", is("success")));
+	}
 
+	@Test
+	public void shouldValidationFailWhenIncorrectTradeGiven() throws Exception {
+		mvc.perform(post("/validate").content(readFile("valueDateAfterTradeDate.json")).contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(jsonPath("$.validationStatus", is("failed")))
+				.andExpect(jsonPath("$.failedReasons", hasSize(1)))
+				.andExpect(jsonPath("$.failedReasons[0]", is("Value date cannot be after trade date.")));
 	}
 
 	private String readFile(String fileName) {

@@ -1,4 +1,4 @@
-package com.cs.validation;
+package com.cs.validation.web;
 
 import com.cs.validation.model.Trade;
 import com.cs.validation.model.ValidationResult;
