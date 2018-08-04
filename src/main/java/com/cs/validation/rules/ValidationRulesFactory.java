@@ -9,6 +9,7 @@ public class ValidationRulesFactory {
 		validationRules.add(new ValueDateAfterTradeDate());
 		validationRules.add(new ValueDateNotOnWeekendOrNonWorkingDay());
 		validationRules.add(new SupportedCounterParty());
+		validationRules.add(new ValidCurrencyIsoCode());
 		return validationRules;
 	}
 }
