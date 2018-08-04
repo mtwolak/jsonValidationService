@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("validate")
 public class ValidationController {
@@ -17,7 +19,7 @@ public class ValidationController {
 	private ValidationService validationService;
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ValidationResponse validate(@RequestBody Trade trade) {
+	public List<ValidationResponse> validate(@RequestBody List<Trade> trade) {
 		return validationService.validate(trade);
 	}
 }

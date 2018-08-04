@@ -21,4 +21,6 @@ public class ValidationResult {
 	public void addErrorMessage(String errorMessage) {
 		this.errors.add(errorMessage);
 	}
+
+
 }

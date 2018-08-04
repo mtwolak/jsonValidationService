@@ -17,8 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -42,7 +41,7 @@ public class ValidationControllerTest {
 		mvc.perform(post("/validate").content(readFile("emp.json")).contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-				.andExpect(jsonPath("$.validationStatus", is("success")));
+				.andExpect(jsonPath("$[0].validationStatus", is("success")));
 	}
 
 	@Test
@@ -50,9 +49,22 @@ public class ValidationControllerTest {
 		mvc.perform(post("/validate").content(readFile("valueDateAfterTradeDate.json")).contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-				.andExpect(jsonPath("$.validationStatus", is("failed")))
-				.andExpect(jsonPath("$.failedReasons", hasSize(1)))
-				.andExpect(jsonPath("$.failedReasons[0]", is("Value date cannot be after trade date.")));
+				.andExpect(jsonPath("$[0].validationStatus", is("failed")))
+				.andExpect(jsonPath("$[0].failedReasons", hasSize(1)))
+				.andExpect(jsonPath("$[0].failedReasons[0]", is("Value date cannot be after trade date.")));
+	}
+
+	@Test
+	public void shouldValidationFailForInputWithManyTrades() throws Exception {
+		mvc.perform(post("/validate").content(readFile("manyIncorrectTrades.json")).contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(jsonPath("$[0].validationStatus", is("failed")))
+				.andExpect(jsonPath("$[0].failedReasons", hasSize(2)))
+				.andExpect(jsonPath("$[0].failedReasons", hasItems("Value date cannot be after trade date.", "Value date cannot fall on weekend or non-working day.")))
+				.andExpect(jsonPath("$[1].validationStatus", is("failed")))
+				.andExpect(jsonPath("$[1].failedReasons", hasSize(1)))
+				.andExpect(jsonPath("$[1].failedReasons", hasItem("Value date cannot be after trade date.")));
 	}
 
 	private String readFile(String fileName) {
