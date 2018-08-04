@@ -6,7 +6,15 @@ public class ValidationResponse {
 
 	private String validationStatus;
 	private Collection<String> failedReasons;
-	private Trade trade;
+
+	public ValidationResponse() {
+
+	}
+
+	public ValidationResponse(ValidationResponseWithTrade validationResponseWithTrade) {
+		setValidationStatus(validationResponseWithTrade.getValidationStatus());
+		setFailedReasons(validationResponseWithTrade.getFailedReasons());
+	}
 
 	public String getValidationStatus() {
 		return validationStatus;
@@ -24,11 +32,4 @@ public class ValidationResponse {
 		this.failedReasons = failedReasons;
 	}
 
-	public Trade getTrade() {
-		return trade;
-	}
-
-	public void setTrade(Trade trade) {
-		this.trade = trade;
-	}
 }

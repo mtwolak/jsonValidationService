@@ -1,7 +1,7 @@
 package com.cs.validation.web;
 
 import com.cs.validation.model.Trade;
-import com.cs.validation.model.ValidationResponse;
+import com.cs.validation.model.ValidationResponseWithTrade;
 import com.cs.validation.model.ValidationResult;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +17,11 @@ class ValidationService {
 		tradeValidator = new TradeValidator();
 	}
 
-	public List<ValidationResponse> validate(List<Trade> trades) {
-		List<ValidationResponse> responses = new LinkedList<>();
+	public List<ValidationResponseWithTrade> validate(List<Trade> trades) {
+		List<ValidationResponseWithTrade> responses = new LinkedList<>();
 		for (Trade trade : trades) {
 			ValidationResult validationResult = tradeValidator.validate(trade);
-			ValidationResponse validationResponse = new ValidationResponse();
+			ValidationResponseWithTrade validationResponse = new ValidationResponseWithTrade();
 			validationResponse.setValidationStatus(validationResult.hasErrors() ? "failed" : "success");
 			validationResponse.setFailedReasons(validationResult.getErrorMessages());
 			validationResponse.setTrade(trade);

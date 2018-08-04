@@ -2,6 +2,7 @@ package com.cs.validation.web;
 
 import com.cs.validation.model.Trade;
 import com.cs.validation.model.ValidationResponse;
+import com.cs.validation.model.ValidationResponseWithTrade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,13 +21,13 @@ public class ValidationController {
 	private ValidationService validationService;
 
 	@PostMapping(value = "trades", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<ValidationResponse> validateTrades(@RequestBody List<Trade> trade) {
+	public List<ValidationResponseWithTrade> validateTrades(@RequestBody List<Trade> trade) {
 		return validationService.validate(trade);
 	}
 
 	@PostMapping(value = "trade", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ValidationResponse validateTrade(@RequestBody Trade trade) {
-		List<ValidationResponse> validate = validationService.validate(Collections.singletonList(trade));
-		return validate.get(0);
+		List<ValidationResponseWithTrade> validate = validationService.validate(Collections.singletonList(trade));
+		return new ValidationResponse(validate.get(0));
 	}
 }
