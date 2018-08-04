@@ -14,8 +14,8 @@ class ValidationResult {
 		return !errors.isEmpty();
 	}
 
-	String getErrorMessage() {
-		return errors.isEmpty() ? "" : errors.iterator().next();
+	Collection<String> getErrorMessages() {
+		return new LinkedList<>(errors);
 	}
 
 	void addErrorMessage(String errorMessage) {
