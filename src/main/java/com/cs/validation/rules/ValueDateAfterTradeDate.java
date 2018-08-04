@@ -10,7 +10,7 @@ class ValueDateAfterTradeDate implements ValidationRule {
 
 	@Override
 	public String getErrorMessage() {
-		return "Value date cannot be after trade date";
+		return "Value date cannot be after trade date.";
 	}
 
 }

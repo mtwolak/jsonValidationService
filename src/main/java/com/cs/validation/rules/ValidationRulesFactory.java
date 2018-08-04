@@ -7,6 +7,7 @@ public class ValidationRulesFactory {
 	public static List<ValidationRule> createValidationRules() {
 		List<ValidationRule> validationRules = new LinkedList<>();
 		validationRules.add(new ValueDateAfterTradeDate());
+		validationRules.add(new ValueDateNotOnWeekendOrNonWorkingDay());
 		return validationRules;
 	}
 }
