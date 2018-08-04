@@ -50,6 +50,17 @@ public class TradeValidatorTest {
 
 		assertThat(validationResult.hasErrors()).isTrue();
 		assertThat(validationResult.getErrorMessages()).containsOnly("Incorrect exerciseStartDate.", "Value date cannot be after trade date.");
+	}
 
+	@Test
+	public void shouldGiveErrorWhenExpiryDateAfterDeliveryDate() {
+		Trade trade = CorrectTrade.create();
+		trade.setExpiryDate(LocalDate.parse("2012-02-02"));
+		trade.setDeliveryDate(LocalDate.parse("2010-01-10"));
+
+		ValidationResult validationResult = tradeValidator.validate(trade);
+
+		assertThat(validationResult.hasErrors()).isTrue();
+		assertThat(validationResult.getErrorMessages()).containsOnly("Incorrect expiry date.");
 	}
 }

@@ -12,6 +12,7 @@ public class ValidationRulesFactory {
 		validationRules.add(new ValidCurrencyIsoCode());
 		validationRules.add(new SupportedStyles());
 		validationRules.add(new ExerciseStartDateConstraint());
+		validationRules.add(new ExpiryDateBeforeDeliveryDate());
 		return validationRules;
 	}
 }

@@ -15,6 +15,8 @@ public class Trade {
 	private LocalDate valueDate;
 	private LocalDate excerciseStartDate;
 	private LocalDate expiryDate;
+	private LocalDate premiumDate;
+	private LocalDate deliveryDate;
 	private String legalEntity;
 	private String trader;
 	private String style;
@@ -129,5 +131,21 @@ public class Trade {
 
 	public void setExpiryDate(LocalDate expiryDate) {
 		this.expiryDate = expiryDate;
+	}
+
+	public LocalDate getPremiumDate() {
+		return premiumDate;
+	}
+
+	public void setPremiumDate(LocalDate premiumDate) {
+		this.premiumDate = premiumDate;
+	}
+
+	public LocalDate getDeliveryDate() {
+		return deliveryDate;
+	}
+
+	public void setDeliveryDate(LocalDate deliveryDate) {
+		this.deliveryDate = deliveryDate;
 	}
 }
