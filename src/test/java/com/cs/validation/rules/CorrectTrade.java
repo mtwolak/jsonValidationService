@@ -10,6 +10,7 @@ class CorrectTrade {
 		Trade trade = new Trade();
 		trade.setValueDate(LocalDate.parse("2018-02-01"));
 		trade.setTradeDate(LocalDate.parse("2018-03-01"));
+		trade.setCustomer("PLUTO1");
 		return trade;
 	}
 }

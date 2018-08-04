@@ -8,6 +8,7 @@ public class ValidationRulesFactory {
 		List<ValidationRule> validationRules = new LinkedList<>();
 		validationRules.add(new ValueDateAfterTradeDate());
 		validationRules.add(new ValueDateNotOnWeekendOrNonWorkingDay());
+		validationRules.add(new SupportedCounterParty());
 		return validationRules;
 	}
 }
