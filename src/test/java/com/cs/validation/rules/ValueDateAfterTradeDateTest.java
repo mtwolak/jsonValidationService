@@ -19,7 +19,7 @@ public class ValueDateAfterTradeDateTest {
 
 	@Test
 	public void shouldValidationSuccessWhenValueDateIsBeforeTradeDate() {
-		Trade trade = new Trade();
+		Trade trade = CorrectTrade.create();
 		trade.setValueDate(LocalDate.parse("2018-02-01"));
 		trade.setTradeDate(LocalDate.parse("2018-03-01"));
 
@@ -30,7 +30,7 @@ public class ValueDateAfterTradeDateTest {
 
 	@Test
 	public void shouldValidationFailWhenValueDateIsAfterTradeDate() {
-		Trade trade = new Trade();
+		Trade trade = CorrectTrade.create();
 		trade.setValueDate(LocalDate.parse("2018-01-01"));
 		trade.setTradeDate(LocalDate.parse("2000-01-01"));
 

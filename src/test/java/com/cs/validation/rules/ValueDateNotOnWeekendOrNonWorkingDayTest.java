@@ -20,7 +20,7 @@ public class ValueDateNotOnWeekendOrNonWorkingDayTest {
 
 	@Test
 	public void shouldValidationFailWhenValueDateIsOnSaturday() {
-		Trade trade = new Trade();
+		Trade trade = CorrectTrade.create();
 		LocalDate saturday = LocalDate.parse("2018-08-04");
 		trade.setValueDate(saturday);
 		trade.setTradeDate(LocalDate.parse("2018-08-05"));
@@ -33,7 +33,7 @@ public class ValueDateNotOnWeekendOrNonWorkingDayTest {
 
 	@Test
 	public void shouldValidationFailWhenValueDateIsOnSunday() {
-		Trade trade = new Trade();
+		Trade trade = CorrectTrade.create();
 		LocalDate sunday = LocalDate.parse("2018-08-05");
 		trade.setValueDate(sunday);
 		trade.setTradeDate(LocalDate.parse("2018-08-06"));
@@ -46,7 +46,7 @@ public class ValueDateNotOnWeekendOrNonWorkingDayTest {
 
 	@Test
 	public void shouldValidationPassWhenValueDateIsNotOnWeekendAndIsNotFreeDay() {
-		Trade trade = new Trade();
+		Trade trade = CorrectTrade.create();
 		LocalDate sunday = LocalDate.parse("2018-08-06");
 		trade.setValueDate(sunday);
 		trade.setTradeDate(LocalDate.parse("2018-08-07"));
@@ -59,7 +59,7 @@ public class ValueDateNotOnWeekendOrNonWorkingDayTest {
 
 	@Test
 	public void shouldValidationFailWhenValueDateIsOnFreeDay() {
-		Trade trade = new Trade();
+		Trade trade = CorrectTrade.create();
 		LocalDate valueDate = LocalDate.parse("2018-01-01");
 		LocalDate tradeDate = LocalDate.parse("2018-08-06");
 		trade.setValueDate(valueDate);
