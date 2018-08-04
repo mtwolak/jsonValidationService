@@ -38,25 +38,25 @@ public class ValidationControllerTest {
 
 	@Test
 	public void shouldValidateSuccessWhenCorrectTradeGiven() throws Exception {
-		mvc.perform(post("/validate").content(readFile("emp.json")).contentType(MediaType.APPLICATION_JSON_UTF8))
+		mvc.perform(post("/validation/trade").content(readFile("successValidationOneEmployee.json")).contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-				.andExpect(jsonPath("$[0].validationStatus", is("success")));
+				.andExpect(jsonPath("$.validationStatus", is("success")));
 	}
 
 	@Test
 	public void shouldValidationFailWhenIncorrectTradeGiven() throws Exception {
-		mvc.perform(post("/validate").content(readFile("valueDateAfterTradeDate.json")).contentType(MediaType.APPLICATION_JSON_UTF8))
+		mvc.perform(post("/validation/trade").content(readFile("failValidationValueDateAfterTradeDate.json")).contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-				.andExpect(jsonPath("$[0].validationStatus", is("failed")))
-				.andExpect(jsonPath("$[0].failedReasons", hasSize(1)))
-				.andExpect(jsonPath("$[0].failedReasons[0]", is("Value date cannot be after trade date.")));
+				.andExpect(jsonPath("$.validationStatus", is("failed")))
+				.andExpect(jsonPath("$.failedReasons", hasSize(1)))
+				.andExpect(jsonPath("$.failedReasons[0]", is("Value date cannot be after trade date.")));
 	}
 
 	@Test
 	public void shouldValidationFailForInputWithManyTrades() throws Exception {
-		mvc.perform(post("/validate").content(readFile("manyIncorrectTrades.json")).contentType(MediaType.APPLICATION_JSON_UTF8))
+		mvc.perform(post("/validation/trades").content(readFile("failValidationTrades.json")).contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(jsonPath("$[0].validationStatus", is("failed")))
@@ -70,7 +70,7 @@ public class ValidationControllerTest {
 	private String readFile(String fileName) {
 		try {
 			ClassLoader classLoader = getClass().getClassLoader();
-			File file = new File(classLoader.getResource(fileName).getFile());
+			File file = new File(classLoader.getResource("validation/" + fileName).getFile());
 			return new String(Files.readAllBytes(file.toPath()));
 		} catch (IOException e) {
 			throw new IllegalArgumentException("File not found: " + fileName, e);

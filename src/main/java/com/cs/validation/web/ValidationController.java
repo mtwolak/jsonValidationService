@@ -9,17 +9,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
-@RequestMapping("validate")
+@RequestMapping("validation")
 public class ValidationController {
 
 	@Autowired
 	private ValidationService validationService;
 
-	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<ValidationResponse> validate(@RequestBody List<Trade> trade) {
+	@PostMapping(value = "trades", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<ValidationResponse> validateTrades(@RequestBody List<Trade> trade) {
 		return validationService.validate(trade);
+	}
+
+	@PostMapping(value = "trade", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ValidationResponse validateTrade(@RequestBody Trade trade) {
+		List<ValidationResponse> validate = validationService.validate(Collections.singletonList(trade));
+		return validate.get(0);
 	}
 }
