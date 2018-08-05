@@ -15,7 +15,7 @@ class ValueDateNotOnWeekendOrNonWorkingDay implements ValidationRule {
 	@Override
 	public boolean validate(Trade trade) {
 		LocalDate valueDate = trade.getValueDate();
-		return !EnumSet.of(DayOfWeek.SATURDAY, DayOfWeek.SUNDAY).contains(valueDate.getDayOfWeek()) && isNotFreeDay(valueDate);
+		return valueDate == null || !EnumSet.of(DayOfWeek.SATURDAY, DayOfWeek.SUNDAY).contains(valueDate.getDayOfWeek()) && isNotFreeDay(valueDate);
 	}
 
 	private boolean isNotFreeDay(LocalDate valueDate) {
