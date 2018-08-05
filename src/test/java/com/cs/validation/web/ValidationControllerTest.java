@@ -19,7 +19,6 @@ import java.nio.file.Files;
 
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -59,7 +58,6 @@ public class ValidationControllerTest {
 	public void shouldValidationFailForInputWithManyTrades() throws Exception {
 		mvc.perform(post("/validation/trades").content(readFile("failValidationTrades.json")).contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(status().isOk())
-				.andDo(print())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(jsonPath("$[0].validationStatus", is("failed")))
 				.andExpect(jsonPath("$[0].failedReasons", hasSize(2)))
