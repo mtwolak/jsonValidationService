@@ -20,7 +20,7 @@ import java.util.List;
 @RestController
 @Api(description = "Provides simple validation for trades")
 @ApiResponses(value = {
-		@ApiResponse(code = 200, message = "Trades has been successfully validated"),
+		@ApiResponse(code = 200, message = "Trades have been successfully validated"),
 		@ApiResponse(code = 400, message = "Validation input is not correct")
 })
 @RequestMapping("validation")
