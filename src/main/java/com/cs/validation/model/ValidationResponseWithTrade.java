@@ -15,7 +15,6 @@ public class ValidationResponseWithTrade extends ValidationResponse {
 	@Override
 	public String toString() {
 		return "ValidationResponseWithTrade{" +
-				"trade=" + trade +
-				'}';
+				"trade=" + trade + super.toString() + '}';
 	}
 }

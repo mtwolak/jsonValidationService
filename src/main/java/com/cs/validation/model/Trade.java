@@ -1,6 +1,7 @@
 package com.cs.validation.model;
 
 import java.time.LocalDate;
+import java.util.StringJoiner;
 
 public class Trade {
 
@@ -147,5 +148,27 @@ public class Trade {
 
 	public void setDeliveryDate(LocalDate deliveryDate) {
 		this.deliveryDate = deliveryDate;
+	}
+
+	@Override
+	public String toString() {
+		return new StringJoiner(", ", Trade.class.getSimpleName() + "[", "]")
+				.add("customer='" + customer + "'")
+				.add("ccyPair='" + ccyPair + "'")
+				.add("type='" + type + "'")
+				.add("direction='" + direction + "'")
+				.add("tradeDate=" + tradeDate)
+				.add("amount1=" + amount1)
+				.add("amount2=" + amount2)
+				.add("rate=" + rate)
+				.add("valueDate=" + valueDate)
+				.add("excerciseStartDate=" + excerciseStartDate)
+				.add("expiryDate=" + expiryDate)
+				.add("premiumDate=" + premiumDate)
+				.add("deliveryDate=" + deliveryDate)
+				.add("legalEntity='" + legalEntity + "'")
+				.add("trader='" + trader + "'")
+				.add("style='" + style + "'")
+				.toString();
 	}
 }
